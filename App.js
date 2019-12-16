@@ -31,8 +31,9 @@ const stackTabUsuarioCursos = createStackNavigator({
     screen: cursoInteractivo,
     navigationOptions: {
       //headerTitle: <LogoTitle />,
+      headerTransparent: true,
       headerStyle: {
-        backgroundColor: '#9CC6D6',
+        //backgroundColor: '#9CC6D6',
         elevation: 0,
       },
     }
