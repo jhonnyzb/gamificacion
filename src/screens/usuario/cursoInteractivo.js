@@ -4,6 +4,7 @@ import { TouchableOpacity, TouchableHighlight } from 'react-native-gesture-handl
 import Seccion from './seccion'
 import Final from './final'
 import { consultaDetalleClasEstudiante } from '../../servicios/usuario'
+import Data from '../../data/data.json'
 
 
 
@@ -31,10 +32,44 @@ class cursoInteractivo extends Component {
 
     async componentDidMount() {
         contador = 0
-        let curso = await consultaDetalleClasEstudiante(2, config).catch(err => { console.log(err) })
-        this.setState({ modulos: curso.data[0].modules})
-
+        // let curso = await consultaDetalleClasEstudiante(2, config).catch(err => { console.log(err) })
+        // this.setState({ modulos: curso.data[0].modules})
+        let curso = Data
+        this.arregloCurso(curso[0].modules)
+        this.setState({ modulos: curso[0].modules })
     }
+
+
+    arregloCurso = (data) => {
+        let arregloNuevo = [];
+        for (let i = 0; i < data.length; i++) {
+
+                for (let j = 0; j < data[i].sections.length; j++) {
+                    let seccion = {
+                        nombre:  data[i].sections[j].name ,
+                        moduloId: data[i].sections[j].module_id,
+                        orden: data[i].sections[j].order,
+                        archivo: data[i].sections[j].files[0].value,
+                        duracion: data[i].sections[j].files[0].duration_time
+                    }
+                     arregloNuevo.push(seccion)
+                }
+                let quiz = {
+                    descripcion: data[i].exam[0].description
+                }
+                arregloNuevo.push(quiz) 
+
+        }
+
+
+        console.log(arregloNuevo.reverse());
+
+        // for (let index = 0; index < array.length; index++) {
+        //     const element = array[index];
+            
+        // }
+    }
+
 
     getItemLayout = (data, index) => (
         { length: 128, offset: 128 * index, index }
@@ -49,7 +84,7 @@ class cursoInteractivo extends Component {
                 <ImageBackground source={require('../../assets/img/li1.png')} style={{ width: '100%', height: 128 }}>
                     <View style={{ paddingLeft: '55%', paddingRight: '35%', paddingTop: '20%' }} >
                         <TouchableOpacity style={{ alignItems: "center" }}>
-                            
+
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             <Seccion />
                         </TouchableOpacity>
@@ -57,12 +92,12 @@ class cursoInteractivo extends Component {
                 </ImageBackground>
             )
         } else if (contador === 2) {
-            
+
             return (
                 <ImageBackground source={require('../../assets/img/li2.png')} style={{ width: '100%', height: 128 }}>
                     <View style={{ paddingLeft: '10%', paddingRight: '80%', paddingTop: '5%' }} >
                         <TouchableOpacity style={{ alignItems: "center" }}>
-                           
+
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             <Seccion />
                         </TouchableOpacity>
@@ -70,12 +105,12 @@ class cursoInteractivo extends Component {
                 </ImageBackground>
             )
         } else if (contador === 3) {
-           
+
             return (
                 <ImageBackground source={require('../../assets/img/li3.png')} style={{ width: '100%', height: 128 }}>
                     <View style={{ paddingLeft: '65%', paddingRight: '25%', paddingTop: '10%' }} >
                         <TouchableOpacity style={{ alignItems: "center" }}>
-                            
+
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             <Seccion />
                         </TouchableOpacity>
@@ -83,12 +118,12 @@ class cursoInteractivo extends Component {
                 </ImageBackground>
             )
         } else if (contador === 4) {
-           
+
             return (
                 <ImageBackground source={require('../../assets/img/li4.png')} style={{ width: '100%', height: 128 }}>
                     <View style={{ paddingLeft: '50%', paddingRight: '30%' }} >
                         <TouchableOpacity style={{ alignItems: "center" }} >
-                            
+
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             <Seccion />
                         </TouchableOpacity>
@@ -103,7 +138,7 @@ class cursoInteractivo extends Component {
                 <ImageBackground source={require('../../assets/img/li5.png')} style={{ width: '100%', height: 128 }}>
                     <View style={{ paddingLeft: '70%', paddingRight: '10%', paddingTop: '10%' }} >
                         <TouchableOpacity style={{ alignItems: "center" }} >
-                            
+
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             <Seccion />
                         </TouchableOpacity>
@@ -113,7 +148,7 @@ class cursoInteractivo extends Component {
 
         }
         else if (contador === 6) {
-            contador = 0      
+            contador = 0
             return (
                 <ImageBackground source={require('../../assets/img/li6.png')} style={{ width: '100%', height: 128 }}>
                     <View style={{ paddingLeft: '14%', paddingRight: '75%', paddingTop: '18%' }} >
@@ -129,7 +164,7 @@ class cursoInteractivo extends Component {
 
 
 
-        
+
 
     }
 
@@ -139,9 +174,9 @@ class cursoInteractivo extends Component {
     // }
 
 
-    moduloOquiz(item){
-        return(
-                <Text>{ item.name   }</Text>
+    moduloOquiz(item) {
+        return (
+            <Text>{item.name}</Text>
         )
     }
 
@@ -173,7 +208,7 @@ class cursoInteractivo extends Component {
 
     render() {
         const { modulos, longArray, modulos2 } = this.state
-        
+
         return (
 
             <View>

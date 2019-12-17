@@ -1,0 +1,323 @@
+[
+    {
+        "id": 2,
+        "status_id": 7,
+        "name": "clase prueba",
+        "description": "desc clase prueba",
+        "rating": 0,
+        "status": {
+            "id": 7,
+            "name": "En Progreso"
+        },
+        "modules": [
+            {
+                "id": 2,
+                "class_id": 2,
+                "name": "Modulo1",
+                "description": "Modulo 1",
+                "order": 1,
+                "sections": [
+                    {
+                        "id": 7,
+                        "module_id": 2,
+                        "name": "Introducción al modulo",
+                        "description": "Pdf de prueba",
+                        "order": 1,
+                        "files": [
+                            {
+                                "id": 7,
+                                "type_id": 2,
+                                "value": "pdf",
+                                 "duration_time": "0",
+                                "section_id": 7,
+                                "file_types": {
+                                    "id": 2,
+                                    "name": "Documento"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    },
+                    {
+                        "id": 8,
+                        "module_id": 2,
+                        "name": "seccion modulo 788",
+                        "description": "desc video section mod 6007",
+                        "order": 2,
+                        "files": [
+                            {
+                                "id": 8,
+                                "type_id": 1,
+                                "value": "url de un video007",
+                                "duration_time": "0",
+                                "section_id": 8,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    },
+                    {
+                        "id": 9,
+                        "module_id": 2,
+                        "name": "seccion modulo 78hg8",
+                        "description": "desc video sgection mod 6007",
+                        "order": 3,
+                        "files": [
+                            {
+                                "id": 9,
+                                "type_id": 1,
+                                "value": "url de un vidego007",
+                                "duration_time": "0",
+                                "section_id": 9,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    },
+                    {
+                        "id": 12,
+                        "module_id": 2,
+                        "name": "seccion modulo 78007hg8",
+                        "description": "desc video sgection mod 6070i007",
+                        "order": 4,
+                        "files": [
+                            {
+                                "id": 12,
+                                "type_id": 1,
+                                "value": "url de un vidego0u0077",
+                                "duration_time": "0",
+                                "section_id": 12,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    },
+                    {
+                        "id": 13,
+                        "module_id": 2,
+                        "name": "seccion modulo 7800g7hg8",
+                        "description": "desc video sgection mod 6070i007",
+                        "order": 5,
+                        "files": [
+                            {
+                                "id": 13,
+                                "type_id": 1,
+                                "value": "url de un videgogg0u0077",
+                                "duration_time": "0",
+                                "section_id": 13,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    }
+                ],
+                "exam": [
+                    {
+                        "id": 2,
+                        "methodology_id": 1,
+                        "module_id": 2,
+                        "type_id": 3,
+                        "description": "desc finalExam class 2",
+                        "min_value_required": 90,
+                        "exam_type": {
+                            "id": 3,
+                            "name": "Evaluación_final",
+                            "description": "Calificación General"
+                        },
+                        "methodologies": {
+                            "id": 1,
+                            "max_value": 100
+                        }
+                    }
+                ]
+            },
+            {
+                "id": 1,
+                "class_id": 2,
+                "name": "modulo 2",
+                "description": "mod de la clase 2",
+                "order": 2,
+                "sections": [
+                    {
+                        "id": 1,
+                        "module_id": 1,
+                        "name": "seccion modulo 2",
+                        "description": "desc video section mod 2",
+                        "order": 1,
+                        "files": [
+                            {
+                                "id": 1,
+                                "type_id": 1,
+                                "value": "url de un video",
+                                "duration_time": "0",
+                                "section_id": 1,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    },
+                    {
+                        "id": 2,
+                        "module_id": 1,
+                        "name": "seccion modulo 3",
+                        "description": "desc video section mod 23",
+                        "order": 2,
+                        "files": [
+                            {
+                                "id": 2,
+                                "type_id": 1,
+                                "value": "url de un video3",
+                                "duration_time": "0",
+                                "section_id": 2,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    },
+                    {
+                        "id": 3,
+                        "module_id": 1,
+                        "name": "seccion modulo 4",
+                        "description": "desc video section mod 24",
+                        "order": 3,
+                        "files": [
+                            {
+                                "id": 3,
+                                "type_id": 1,
+                                "value": "url de un video4",
+                                "duration_time": "0",
+                                "section_id": 3,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    },
+                    {
+                        "id": 4,
+                        "module_id": 1,
+                        "name": "seccion modulo 5",
+                        "description": "desc video section mod 5",
+                        "order": 4,
+                        "files": [
+                            {
+                                "id": 4,
+                                "type_id": 1,
+                                "value": "url de un video5",
+                                "duration_time": "0",
+                                "section_id": 4,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    },
+                    {
+                        "id": 5,
+                        "module_id": 1,
+                        "name": "seccion modulo 6",
+                        "description": "desc video section mod 6",
+                        "order": 5,
+                        "files": [
+                            {
+                                "id": 5,
+                                "type_id": 1,
+                                "value": "url de un video514",
+                                "duration_time": "0",
+                                "section_id": 5,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    },
+                    {
+                        "id": 10,
+                        "module_id": 1,
+                        "name": "seccion modulo 7800hg8",
+                        "description": "desc video sgection mod 600007",
+                        "order": 6,
+                        "files": [
+                            {
+                                "id": 10,
+                                "type_id": 1,
+                                "value": "url de un vidego0007",
+                                "duration_time": "0",
+                                "section_id": 10,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    },
+                    {
+                        "id": 11,
+                        "module_id": 1,
+                        "name": "seccion modulo 78007hg8",
+                        "description": "desc video sgection mod 6070007",
+                        "order": 7,
+                        "files": [
+                            {
+                                "id": 11,
+                                "type_id": 1,
+                                "value": "url de un vidego00077",
+                                "duration_time": "0",
+                                "section_id": 11,
+                                "file_types": {
+                                    "id": 1,
+                                    "name": "Video"
+                                }
+                            }
+                        ],
+                        "user_sections": []
+                    }
+                ],
+                "exam": [
+                    {
+                        "id": 1,
+                        "methodology_id": 1,
+                        "module_id": 1,
+                        "type_id": 2,
+                        "description": "desc quiz1 modulo 1",
+                        "min_value_required": 90,
+                        "exam_type": {
+                            "id": 2,
+                            "name": "quiz",
+                            "description": "Calificación módulo"
+                        },
+                        "methodologies": {
+                            "id": 1,
+                            "max_value": 100
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+]
