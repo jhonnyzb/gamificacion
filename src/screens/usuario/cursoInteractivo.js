@@ -5,6 +5,9 @@ import Seccion from './seccion'
 import Final from './final'
 import { consultaDetalleClasEstudiante } from '../../servicios/usuario'
 import Modal from "react-native-modal";
+import { Dimensions } from 'react-native';
+import PDFReader from 'rn-pdf-reader-js'
+import { WebView } from 'react-native-webview';
 
 import Data from '../../data/data.json'
 
@@ -22,6 +25,7 @@ class cursoInteractivo extends Component {
             isModalVisibleVideoPdf: false,
             isLoading: true,
             urlMostrar: '',
+            tipoArcchivo_: ''
         };
 
 
@@ -47,6 +51,7 @@ class cursoInteractivo extends Component {
                     nombre: data[i].sections[j].name,
                     moduloId: data[i].sections[j].module_id,
                     orden: data[i].sections[j].order,
+                    tipoArchivo: data[i].sections[j].files[0].type_id,
                     archivo: data[i].sections[j].files[0].value,
                     duracion: data[i].sections[j].files[0].duration_time,
                     seccionVista: data[i].sections[j]
@@ -60,7 +65,7 @@ class cursoInteractivo extends Component {
             arregloNuevo.push(quiz)
 
         }
-        console.log(arregloNuevo)
+
         return arregloNuevo
         //console.log(arregloNuevo.reverse()); 
     }
@@ -72,14 +77,12 @@ class cursoInteractivo extends Component {
 
 
     sectores(item, index) {
-
         contador += 1
         if (contador === 1) {
-
             return (
-                <ImageBackground source={require('../../assets/img/li1.png')} style={{ width: '100%', height: 128 }}>
-                    <View style={{ paddingLeft: '55%', paddingRight: '35%', paddingTop: '20%' }} >
-                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.archivo)} >
+                <ImageBackground source={require('../../assets/img/li6.png')} style={{ width: '100%', height: 128 }}>
+                    <View style={{ paddingLeft: '48%', paddingRight: '42%', paddingTop: '16%' }} >
+                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.tipoArchivo, item.archivo)} >
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             {item.identificador === 1
                                 ? <Seccion />
@@ -93,9 +96,9 @@ class cursoInteractivo extends Component {
         } else if (contador === 2) {
 
             return (
-                <ImageBackground source={require('../../assets/img/li2.png')} style={{ width: '100%', height: 128 }}>
+                <ImageBackground source={require('../../assets/img/li5.png')} style={{ width: '100%', height: 128 }}>
                     <View style={{ paddingLeft: '10%', paddingRight: '80%', paddingTop: '5%' }} >
-                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.archivo)} >
+                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.tipoArchivo, item.archivo)} >
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             {item.identificador === 1
                                 ? <Seccion />
@@ -109,9 +112,10 @@ class cursoInteractivo extends Component {
         else if (contador === 3) {
 
             return (
-                <ImageBackground source={require('../../assets/img/li3.png')} style={{ width: '100%', height: 128 }}>
+                <ImageBackground source={require('../../assets/img/li4.png')} style={{ width: '100%', height: 128 }}>
+
                     <View style={{ paddingLeft: '65%', paddingRight: '25%', paddingTop: '10%' }} >
-                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.archivo)} >
+                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.tipoArchivo, item.archivo)} >
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             {item.identificador === 1
                                 ? <Seccion />
@@ -123,9 +127,10 @@ class cursoInteractivo extends Component {
             )
         } else if (contador === 4) {
             return (
-                <ImageBackground source={require('../../assets/img/li4.png')} style={{ width: '100%', height: 128 }}>
+                <ImageBackground source={require('../../assets/img/li3.png')} style={{ width: '100%', height: 128 }}>
+
                     <View style={{ paddingLeft: '50%', paddingRight: '30%' }} >
-                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.archivo)} >
+                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.tipoArchivo, item.archivo)} >
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             {item.identificador === 1
                                 ? <Seccion />
@@ -140,9 +145,9 @@ class cursoInteractivo extends Component {
         }
         else if (contador === 5) {
             return (
-                <ImageBackground source={require('../../assets/img/li5.png')} style={{ width: '100%', height: 128 }}>
+                <ImageBackground source={require('../../assets/img/li2.png')} style={{ width: '100%', height: 128 }}>
                     <View style={{ paddingLeft: '70%', paddingRight: '20%', paddingTop: '10%' }} >
-                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.archivo)} >
+                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.tipoArchivo, item.archivo)} >
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             {item.identificador === 1
                                 ? <Seccion />
@@ -157,9 +162,9 @@ class cursoInteractivo extends Component {
         else if (contador === 6) {
             contador = 0
             return (
-                <ImageBackground source={require('../../assets/img/li6.png')} style={{ width: '100%', height: 128 }}>
+                <ImageBackground source={require('../../assets/img/li1.png')} style={{ width: '100%', height: 128 }}>
                     <View style={{ paddingLeft: '5%', paddingRight: '75%', paddingTop: '18%' }} >
-                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.archivo)} >
+                        <TouchableOpacity style={{ alignItems: "center" }} onPress={() => this.toggleModal(item.tipoArchivo, item.archivo)} >
                             <Image source={require('../../assets/img/moneda.gif')} style={{ height: 13, width: 13, marginBottom: '1%' }} />
                             {item.identificador === 1
                                 ? <Seccion />
@@ -174,10 +179,31 @@ class cursoInteractivo extends Component {
 
     }
 
-    toggleModal = (url) => {
-        this.setState({ isModalVisibleVideoPdf: true, urlMostrar: url });
+    toggleModal = (tArchivo, url) => {
+        console.log(tArchivo)
+        this.setState({ urlMostrar: url, tipoArcchivo_: tArchivo, isModalVisibleVideoPdf: true, });
     };
 
+
+
+    async _loadNewPlaybackInstance() {
+        try {
+            const source = { uri: this.state.urlMostrar };
+            //const source = { uri: modulo.sections[orden].files[0].value, headers: { Authorization: 'Bearer ' + this.state.tokenUrl, overrideFileExtensionAndroid: 'm3u8' } };
+            const initialStatus = {
+                shouldPlay: true,
+                rate: 1.0,
+                shouldCorrectPitch: true,
+                volume: 1.0,
+                isMuted: false,
+                isLooping: false
+
+            };
+            await this._video.loadAsync(source, initialStatus);
+        } catch (error) {
+            console.log('')
+        }
+    }
 
 
     // posicion = () => {
@@ -185,10 +211,26 @@ class cursoInteractivo extends Component {
     // }
 
 
+    _onError = error => {
+        console.log(`ON ERROR : ${error}`);
+    };
+
+    _onReadyForDisplay = event => {
+        console.log(event.naturalSize.height)
+        console.log(event.naturalSize.width)
+        console.log(event.naturalSize.orientation)
+    };
+
+    _mountVideo = component => {
+        this._video = component;
+        this._loadNewPlaybackInstance();
+    };
+
 
     render() {
-        const { modulos, longitudCurso, urlMostrar } = this.state
-
+        const { modulos, tipoArcchivo_ } = this.state
+        const { height, width } = Dimensions.get('window');
+        let w = (width * 0.3) / 1
         if (this.state.isLoading) {
             return (
                 <View
@@ -203,29 +245,45 @@ class cursoInteractivo extends Component {
             <View>
                 <FlatList
                     data={modulos}
+                    inverted
                     ref={(ref) => { this.flatListModulos = ref; }}
                     renderItem={({ item, index }) => this.sectores(item, index)}
                     keyExtractor={(item, index) => index.toString()}
                     getItemLayout={this.getItemLayout}
-                    initialScrollIndex={longitudCurso}
+                    //initialScrollIndex={longitudCurso}
                     onScrollToIndexFailed={() => { }}
                 />
+                {this.state.tipoArcchivo_ === 1
+                    ?
+                    <Modal isVisible={this.state.isModalVisibleVideoPdf}
+                        style={{ padding: '1%' }}
+                        onBackdropPress={() => this.setState({ isModalVisibleVideoPdf: false })} animationIn='fadeIn' animationOut='fadeOut' backdropTransitionOutTiming={0} >
+                        <View style={{ backgroundColor: 'white', borderRadius: 5, height: 350, paddingVertical: '1%', paddingHorizontal: '1%' }}>
+                            <Video
+                                ref={this._mountVideo}
+                                onReadyForDisplay={this._onReadyForDisplay}
+                                resizeMode={Video.RESIZE_MODE_CONTAIN}
+                                useNativeControls={true}
+                                posterSource={require('../../assets/img/loadVideo.gif')}
+                                posterStyle={{ width: 50, height: 50, marginTop: '35%', marginLeft: (width - w) / 2 }}
+                                usePoster={true}
+                                //onPlaybackStatusUpdate={(playbackStatus) => this.estadoReproduccion(playbackStatus, orden === indiceUltimoSecciones ? modulo.sections[orden].id : modulo.sections[orden + 1].id)}
+                                onError={this._onError}
+                                style={{ width: '100%', height: '100%' }}
+                            />
+                        </View>
+                    </Modal>
 
-                <Modal isVisible={this.state.isModalVisibleVideoPdf} onBackdropPress={() => this.setState({ isModalVisibleVideoPdf: false })} animationIn='fadeIn' animationOut='fadeOut' backdropTransitionOutTiming={0} >
-                    <View style={{ backgroundColor: 'white', borderRadius: 5, padding: '8%', height: 350 }}>
-                        <Video
-                            source={{ uri: 'https://vod.ikeko.tv/vod/3f5c1fd497a5/playlist.m3u8' }}
-                            rate={1.0}
-                            volume={1.0}
-                            isMuted={false}
-                            resizeMode='contain'
-                            shouldPlay
-                            isLooping
-                            useNativeControls={true}
-                            style={{ width: '100%', height: 300 }}
-                        />
-                    </View>
-                </Modal>
+                    :
+                    <Modal isVisible={this.state.isModalVisibleVideoPdf}>
+                        
+                            <Text>h</Text>
+    
+                   
+                    </Modal>
+
+                }
+
 
             </View>
 
